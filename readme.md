@@ -1,5 +1,7 @@
 Hello Day2
 
+npm install express
+npm install body-parser
 npm install mysql2
 
 database: mysql
