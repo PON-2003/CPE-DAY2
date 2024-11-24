@@ -5,7 +5,7 @@ const db = require("./services/db");
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', async (req, res) => {
     const result = await db.query("select * FROM users");
@@ -30,6 +30,17 @@ app.get('/products', async (req, res) => {
         INNER JOIN product_details ON products.product_id = product_details.product_id
         INNER JOIN categories ON products.category_id = categories.category_id
     `);
+    res.json(result);
+});
+
+app.post('/users', async (req, res) => {
+    const { username, password, firstname, lastname, email, phonenumber } = req.body;
+
+    const result = await db.query(`
+        INSERT INTO users (username, password, firstname, lastname, email, phonenumber)
+        VALUES(?, ?, ?, ?, ?, ?)
+    `, [username, password, firstname, lastname, email, phonenumber])
+
     res.json(result);
 });
 
