@@ -14,8 +14,15 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/users', async (req, res) => {
-    const result = await db.query("select * FROM users");
-    res.json(result);
+    const { firstname } = req.query;
+
+    if (firstname) {
+        const result = await db.query("select * FROM users WHERE firstname = ?", [firstname]);
+        res.json(result);
+    } else {
+        const result = await db.query("select * FROM users");
+        res.json(result);
+    }
 });
 
 app.get('/category', async (req, res) => {
