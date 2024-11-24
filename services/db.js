@@ -8,3 +8,7 @@ const query = async (sql, params) => {
 
     return result;
 }
+
+module.exports = {
+    query,
+}
