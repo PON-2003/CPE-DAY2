@@ -51,6 +51,6 @@ app.post('/users', async (req, res) => {
     res.json(result);
 });
 
-app.listen(3000, () => {
+app.listen(3000, () => { // เปลี่ยนเลข port เป็น port ของตนเอง
     console.log("API Running");
 });
